@@ -1,0 +1,5 @@
+// export const ACTION_NAME = "ACTION_NAME";
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const SET_LOCALE = 'SET_LOCALE';
