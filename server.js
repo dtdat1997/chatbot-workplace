@@ -3,7 +3,7 @@ const config = require('./config');
 
 process.on('uncaughtException', err => {
     console.log('UNCAUGHT EXCEPTION!!! shutting down...');
-    console.log(err.name, err.message);
+    console.log(err);
     process.exit(1);
 });
 
@@ -26,6 +26,6 @@ app.listen(port, () => {
 
 process.on('unhandledRejection', err => {
     console.log('UNHANDLED REJECTION!!!  shutting down ...');
-    console.log(err.name, err.message);
+    console.log(err);
     process.exit(1);
 });

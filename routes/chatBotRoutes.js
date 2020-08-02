@@ -7,6 +7,5 @@ const authController = require('./../controllers/authController');
 router.use(authController.protect);
 
 router.post('/send', chatBotController.sendMessage);
-router.post('/webhook', chatBotController.webhook);
 
 module.exports = router;

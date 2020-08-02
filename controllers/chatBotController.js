@@ -11,7 +11,6 @@ const workplace_api_headers = {
 
 exports.sendMessage = async (req, res, next) => {
     try {
-        // console.log(req.body);
         if (!req.body.uuid) return next(new AppError(401, 'fail', 'UserID must be required'), req, res, next);
         if (!req.body.text) return next(new AppError(401, 'fail', 'Text must be required'), req, res, next);
 
@@ -22,22 +21,16 @@ exports.sendMessage = async (req, res, next) => {
             'message': {
                 'text': req.body.text
             }
-        };
-        console.log();
+        };s
 
-        const response = axios.post(config.WORKPLACE_API_ORIGIN + '/me/messages', params, workplace_api_headers).then(rs => {
-                console.log(rs);
-            }).catch(err => {
-                console.log(err);
+        axios.post(config.WORKPLACE_API_ORIGIN + '/me/messages', params, workplace_api_headers).then(rs => {
+            res.status(200).json({
+                status: 'success',
+                msg: 'Send message successful'
+            });
+        }).catch(err => {
+            next(err);
         });
-
-
-        // res.status(204).json({
-        //     status: 'success',
-        //     data: null
-        // });
-
-
     } catch (error) {
         next(error);
     }
@@ -45,25 +38,20 @@ exports.sendMessage = async (req, res, next) => {
 
 exports.webhook = async (req, res, next) => {
     try {
-        // await User.findByIdAndUpdate(req.user.id, {
-        //     active: false
-        // });
-        console.log(req.body);
-
-        res.status(204).json({
-            status: 'success',
-            data: null
+        // get query params
+        const request = req._parsedUrl.query.split('&');
+        request.forEach( function(element, index) {
+            var item = element.split('=');
+            req.query[item[0]] = item[1];
         });
 
-
+        if (req.query['hub.mode'] === 'subscribe' &&
+            req.query['hub.verify_token'] === config.WORKPLACE_WEBHOOK_VERIFY_TOKEN) {
+            res.status(200).json(req.query['hub.challenge']);
+        } else {
+            res.status(403).json({ msg: 'Failed validation. Make sure the validation tokens match.' });
+        }
     } catch (error) {
         next(error);
     }
 };
-
-// exports.getAllUsers = base.getAll(User);
-// exports.getUser = base.getOne(User);
-
-// // Don't update password on this 
-// exports.updateUser = base.updateOne(User);
-// exports.deleteUser = base.deleteOne(User);
