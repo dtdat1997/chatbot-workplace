@@ -1,15 +1,15 @@
 const axios = require('axios');
-const base = require('./baseController');
+const AppError = require('../utils/appError');
 const config = require('../config');
 
 const workplace_api_headers = {
-  headers: {
-    'content-type': 'application/json',
-    Authorization: 'Bearer ' + config.CHAT_BOT_ACCESS_TOKEN
-  }
+    headers: {
+        'content-type': 'application/json',
+        Authorization: 'Bearer ' + config.CHAT_BOT_ACCESS_TOKEN
+    }
 };
 
-exports.sendMessage = async (req, res, next) => {
+exports.sendMessage = async(req, res, next) => {
     try {
         if (!req.body.uuid) return next(new AppError(401, 'fail', 'UserID must be required'), req, res, next);
         if (!req.body.text) return next(new AppError(401, 'fail', 'Text must be required'), req, res, next);
@@ -21,7 +21,7 @@ exports.sendMessage = async (req, res, next) => {
             'message': {
                 'text': req.body.text
             }
-        };s
+        };
 
         axios.post(config.WORKPLACE_API_ORIGIN + '/me/messages', params, workplace_api_headers).then(rs => {
             res.status(200).json({
@@ -36,7 +36,7 @@ exports.sendMessage = async (req, res, next) => {
     }
 };
 
-exports.webhook = async (req, res, next) => {
+exports.webhook = async(req, res, next) => {
     try {
         // get query params
         const request = req._parsedUrl.query.split('&');

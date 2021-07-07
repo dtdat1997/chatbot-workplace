@@ -14,7 +14,7 @@ const createToken = id => {
     });
 };
 
-exports.login = async (req, res, next) => {
+exports.login = async(req, res, next) => {
     try {
         const {
             email,
@@ -54,7 +54,7 @@ exports.login = async (req, res, next) => {
     }
 };
 
-exports.signup = async (req, res, next) => {
+exports.signup = async(req, res, next) => {
     try {
         const user = await User.create({
             name: req.body.name,
@@ -81,7 +81,7 @@ exports.signup = async (req, res, next) => {
 
 };
 
-exports.protect = async (req, res, next) => {
+exports.protect = async(req, res, next) => {
     try {
         // 1) check if the token is there
         let token;

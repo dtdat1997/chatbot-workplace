@@ -1,13 +1,16 @@
 {
-  "name": "chat-bot-for-workplace",
+  "name": "chatbot-workplace",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "debug": "ndb server.js -exec babel-node --presets babel-preset-env",
-    "start": "nodemon server.js -exec babel-node --presets babel-preset-env"
+    "start": "nodemon server.js",
+    "serve": "concurrently \"npm run start\" \"vue-cli-service serve\"",
+    "build": "concurrently \"npm run start\" \"vue-cli-service build\" ",
+    "lint": "./node_modules/.bin/eslint src/ --ext .js,.vue --fix"
   },
-  "author": "Moath Shreim",
+  "author": "Duong Tien Dat",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
@@ -23,9 +26,40 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.27",
     "validator": "^12.2.0",
-    "xss-clean": "^0.1.1"
+    "xss-clean": "^0.1.1",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "vue": "^2.6.11",
+    "vue-meta": "^2.4.0",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0",
+    "vue-i18n": "^8.17.3",
+    "vee-validate": "^3.2.5",
+    "concurrently": "^3.6.0",
+    "js-cookie": "^2.2.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
+    "sass": "^1.26.9",
+    "sass-loader": "^9.0.1"
   },
   "devDependencies": {
-    "morgan": "^1.9.1"
-  }
+    "@vue/cli-plugin-babel": "^3.0.0",
+    "@vue/cli-service": "^3.0.0",
+    "morgan": "^1.9.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

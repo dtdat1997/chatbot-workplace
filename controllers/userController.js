@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const base = require('./baseController');
 
-exports.deleteMe = async (req, res, next) => {
+exports.deleteMe = async(req, res, next) => {
     try {
         await User.findByIdAndUpdate(req.user.id, {
             active: false

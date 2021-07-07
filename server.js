@@ -19,9 +19,9 @@ mongoose.connect(config.DATABASE_URL, {
 });
 
 // Start the server
-const port = config.PORT;
+const port = config.PORT_BACKEND;
 app.listen(port, () => {
-    console.log(`Application is running on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 });
 
 process.on('unhandledRejection', err => {

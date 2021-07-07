@@ -1,0 +1,14 @@
+{
+    "login_screen": {
+        "label": "Log in",
+        "email": "Email",
+        "password": "Password"
+    },
+    "home_screen": {
+    	"hompage_name": "ChatBot manager",
+    	"logout": "Log out"
+    },
+    "message": {
+    	"login_error": "Email or password incorrect"
+    }
+}
